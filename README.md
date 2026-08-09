@@ -184,6 +184,12 @@ Five test cases were completed successfully:
 | UAT-04 | Email Draft Creation | Stakeholder email draft generated | Gmail draft successfully created for human review | PASS |
 | UAT-05 | End-to-End Workflow | Complete workflow executes successfully | Zap test completed successfully | PASS |
 
+## Zap Run Evidence
+
+The workflow was successfully executed through Zapier, with the Zap Run confirming the processing of the meeting input and execution of the downstream automation steps.
+
+https://zapier.com/app/history/01b0451c-19f9-ac54-8136-5e879386c2d4?root_id=375663432#0=input
+
 [View detailed UAT test cases](documentation/uat-test-cases.md)
 
 ---
@@ -201,7 +207,7 @@ The project was developed using Business Analysis practices across requirements 
 ### Process & Architecture
 
 - [As-Is / To-Be Process](as-is-to-be-process.png)
-- [Solution Architecture](solution-architecture.png)
+- [Solution Architecture](solution-architecture.png) 
 
 ---
 

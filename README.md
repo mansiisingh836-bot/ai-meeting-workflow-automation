@@ -1,168 +1,324 @@
+# AI-Powered Meeting Intelligence & Workflow Automation
 
-# AI-Powered Workflow Automation for Meeting Intelligence & Business Productivity
+> **Business Analysis + Generative AI + Workflow Automation**
 
-> **Using Generative AI and no-code automation to transform unstructured meeting information into structured business actions.**
+An end-to-end workflow automation prototype that transforms unstructured meeting notes into structured business information and automates routine post-meeting activities using Generative AI and no-code automation.
 
 ---
 
 ## Executive Summary
 
 ### Project Overview
-Modern organizations conduct numerous meetings every day, generating action items, follow-up meetings, and stakeholder communications. Managing these activities manually is repetitive, time-consuming, and increases the risk of missed tasks or inconsistent communication.
 
-This project demonstrates how Generative AI and workflow automation can streamline post-meeting activities by converting unstructured meeting notes into structured business outputs. Using **Google Gemini AI** and **Zapier**, the workflow automatically extracts key information from meeting notes, creates calendar events, generates tasks in **Microsoft To Do**, and drafts professional follow-up emails for user review.
+Post-meeting activities often involve reviewing notes, identifying action items, scheduling follow-ups, creating tasks, and preparing stakeholder communications across multiple applications.
 
-The solution is designed to support knowledge workers across business functions (Business Analysts, Project Coordinators, Operations Teams, Executive EAs) by reducing repetitive administrative effort while maintaining human oversight.
+This project demonstrates how Generative AI and workflow automation can redesign this process by converting unstructured meeting notes into structured business actions.
 
-### Business Problem
-After meetings, employees often need to:
-1. Review meeting notes
-2. Identify action items & priorities
-3. Schedule follow-up meetings
-4. Update task management systems
-5. Draft stakeholder emails
+The solution uses **Zapier Forms** to capture meeting notes, **Google Gemini** to extract structured information, **JavaScript in Code by Zapier** to process the generated JSON, and **Zapier** to automate downstream business actions.
 
-These activities are typically completed across multiple applications, requiring repetitive manual effort and increasing the possibility of delays or missed actions.
+### Automated Outputs
 
-### Project Objectives
-- Automate post-meeting administrative workflows.
-- Convert unstructured meeting notes into structured business information.
-- Generate calendar events automatically.
-- Create action-item tasks in Microsoft To Do.
-- Draft professional follow-up emails in Gmail.
-- Enforce human review before stakeholder emails are sent.
+The workflow produces:
+
+- A Google Calendar follow-up event
+- A Microsoft To Do action-item task
+- A Gmail stakeholder email draft
+
+The email is intentionally kept as a **draft for human review** before it is sent.
 
 ---
 
-## Tools & Technologies
+## Business Problem
 
-| Category | Tool / Technology |
-| :--- | :--- |
-| **Input Interface** | Zapier Forms |
-| **AI Processing Layer** | Google Gemini AI |
-| **Orchestration & Automation** | Zapier |
-| **Calendar Automation** | Google Calendar |
-| **Task Management** | Microsoft To Do |
-| **Communication** | Gmail |
-| **Data Format & Parsing** | JSON, JavaScript (`Code by Zapier`) |
-| **Process Diagramming** | Draw.io |
+Post-meeting administrative activities are often handled manually across multiple applications.
 
----
+A typical process involves:
 
-## Business Analysis & Stakeholder Impact
+1. Reviewing meeting notes
+2. Identifying action items and priorities
+3. Creating calendar follow-ups
+4. Creating task reminders
+5. Drafting stakeholder communications
+6. Reviewing and sending the communication
 
-### Business Stakeholders Matrix
-
-| Stakeholder | Primary Responsibility | Business Benefit |
-| :--- | :--- | :--- |
-| **Executive Assistant (EA)** | Manage C-suite schedules and communications | Reduced manual effort; accelerated meeting follow-up |
-| **Executive Manager** | Review commitments and approve outputs | Improved visibility of commitments and decisions |
-| **Business Analyst (BA)** | Capture meeting outcomes and user stories | Structured, standardized information extraction |
-| **Project Coordinator** | Track project deliverables and deadlines | Faster action tracking; zero unlogged tasks |
-| **Operations Team** | Maintain workflow efficiency and standards | Standardized documentation and handoff processes |
+This creates repetitive administrative work and increases the risk of missed actions, inconsistent follow-ups, delayed communication, and manual data entry.
 
 ---
 
-## Process Redesign (As-Is vs. To-Be)
+## Project Objectives
 
-### Current State — As-Is (Manual Administration)
-`Meeting Ends` ➔ `Review Notes` ➔ `Manual Calendar Update` ➔ `Manual Task Creation` ➔ `Manual Email Draft` ➔ `Send`
+The project aims to:
 
-### Future State — To-Be (AI & Automated Workflow)
+- Automate routine post-meeting administrative activities
+- Convert unstructured meeting notes into structured business information
+- Generate follow-up calendar events automatically
+- Create action-item tasks in Microsoft To Do
+- Generate stakeholder email drafts in Gmail
+- Retain human review before external communication is sent
+
+---
+
+## Proposed Solution
+
+The workflow introduces an AI-enabled automation layer between meeting notes and downstream business applications.
+
+**Meeting Notes → Zapier Forms → Google Gemini → Structured JSON → JavaScript Validation → Zapier Automation → Google Calendar / Microsoft To Do / Gmail Draft → Human Review**
+
+The workflow separates AI-based information extraction from downstream business actions, allowing structured information to be reused across multiple applications.
+
+---
+
+## Solution Architecture
+
+The implemented solution consists of the following components:
+
+| Component | Purpose |
+|---|---|
+| Zapier Forms | Captures meeting notes and triggers the workflow |
+| Google AI Studio (Gemini) | Analyses meeting notes and extracts structured information |
+| Structured JSON | Standardises the AI-generated output |
+| Code by Zapier | Parses and validates the generated JSON |
+| Zapier | Orchestrates the downstream workflow |
+| Google Calendar | Creates the follow-up calendar event |
+| Microsoft To Do | Creates the action-item task |
+| Gmail | Creates a stakeholder email draft |
+| Human Review | Provides final review before communication |
+
+### Architecture Diagram
+
+![Solution Architecture](solution-architecture.png)
+
+---
+
+## Process Redesign
+
+### Current State — As-Is
+
+The original process relies heavily on manual administrative activities after a meeting.
+
+**Meeting Ends → Review Notes → Update Calendar → Create Task → Draft Email → Send to Stakeholders**
+
+### Future State — To-Be
+
+The redesigned workflow automates information extraction and downstream task creation while retaining human review for stakeholder communication.
+
+**Meeting Notes → AI Processing → Structured Data → Automated Business Actions → Human Review → Communication**
+
+### As-Is vs To-Be Process
+
+![As-Is and To-Be Process](as-is-to-be-process.png)
+
+---
+
+## Workflow Implementation
+
+### Step 1 — Meeting Notes Submission
+
+The user submits meeting information through **Zapier Forms**.
+
+The form acts as the entry point for the workflow and provides the meeting notes that will be processed by the AI layer.
+
+### Step 2 — AI Processing
+
+Google Gemini analyses the submitted meeting notes and extracts structured information, including:
+
+- Meeting title
+- Meeting date
+- Meeting time
+- Duration
+- Action item
+- Priority
+- Email draft
+
+### Step 3 — Structured Data Processing
+
+Gemini returns the extracted information in JSON format.
+
+**Code by Zapier** uses JavaScript to:
+
+- Parse the AI response
+- Validate the JSON structure
+- Extract the required fields
+- Prepare the information for downstream automation
+
+### Step 4 — Calendar Automation
+
+The structured meeting information is used to create a Google Calendar event.
+
+The workflow maps the relevant meeting information, including:
+
+- Meeting title
+- Meeting date
+- Meeting time
+- Duration
+
+into the calendar event.
+
+### Step 5 — Task Automation
+
+The identified action item is used to create a Microsoft To Do task.
+
+The extracted priority can also be used to support task prioritisation.
+
+### Step 6 — Email Draft Generation
+
+The generated stakeholder communication is passed to Gmail as an email draft.
+
+The email is **not automatically sent**.
+
+Instead, it remains in Gmail Drafts until a human reviews and sends it.
+
+---
+
+## Testing & Validation
+
+The workflow was validated using defined **User Acceptance Testing (UAT)** scenarios.
+
+Five test cases were completed successfully:
+
+| Test Case | Description | Expected Result | Actual Result | Status |
+|---|---|---|---|---|
+| UAT-01 | Meeting Notes Parsing | Structured JSON generated | Structured JSON successfully generated with required meeting and action-item fields | PASS |
+| UAT-02 | Calendar Event Creation | Calendar event created correctly | Google Calendar event successfully created with the required date, time and duration | PASS |
+| UAT-03 | Task Creation | Action item created | Microsoft To Do task successfully created | PASS |
+| UAT-04 | Email Draft Creation | Stakeholder email draft generated | Gmail draft successfully created for human review | PASS |
+| UAT-05 | End-to-End Workflow | Complete workflow executes successfully | Zap test completed successfully | PASS |
+
+[View detailed UAT test cases](documentation/uat-test-cases.md)
+
+---
+
+## Business Analysis Artifacts
+
+The project was developed using Business Analysis practices across requirements definition, process analysis, solution design, and testing.
+
+### Requirements Documentation
+
+- [Business Requirements](documentation/business-requirements.md)
+- [Functional Requirements](documentation/functional-requirements.md)
+- [UAT Test Cases](documentation/uat-test-cases.md)
+
+### Process & Architecture
+
+- [As-Is / To-Be Process](as-is-to-be-process.png)
+- [Solution Architecture](solution-architecture.png)
+
+---
+
+## Key Business Outcomes
+
+The project demonstrates the potential to:
+
+- Reduce repetitive post-meeting administrative work
+- Standardise meeting information into structured data
+- Automate follow-up task creation
+- Automate calendar event creation
+- Accelerate stakeholder communication preparation
+- Improve consistency across post-meeting workflows
+- Maintain human oversight for external communication
+
+> **Note:** These are potential business outcomes demonstrated by the prototype. No production-level time or cost savings are claimed because the workflow has not been deployed at organisational scale.
+
+---
+
+## Technology Stack
+
+### Generative AI
+
+- Google AI Studio
+- Gemini
+
+### Workflow Automation
+
+- Zapier
+- Zapier Forms
+- Code by Zapier
+
+### Business Applications
+
+- Google Calendar
+- Microsoft To Do
+- Gmail
+
+### Data Processing
+
+- JSON
+- JavaScript
+
+### Business Analysis
+
+- Requirements elicitation
+- Functional requirements
+- As-Is / To-Be process mapping
+- Workflow analysis
+- UAT
+- Stakeholder communication
+
+---
+
+## Human-in-the-Loop Design
+
+The solution intentionally does not automatically send stakeholder emails.
+
+The final communication follows a controlled workflow:
+
+**AI Generates → Gmail Creates Draft → Human Reviews → Human Edits if Required → Human Sends**
+
+This provides a human control point for validating AI-generated communication before it reaches external stakeholders.
+
+The approach demonstrates how AI automation can be combined with human oversight rather than fully automating a potentially sensitive communication step.
+
+---
+
+## Current Limitations
+
+This project is a portfolio-scale prototype and has not been deployed as an enterprise production system.
+
+Current limitations include:
+
+- Workflow depends on the configured third-party applications
+- Email communication remains human-reviewed
+- No enterprise database or persistent application backend is implemented
+- Performance has not been measured at production scale
+- The workflow depends on the quality and completeness of the submitted meeting notes
+
+---
+
+## Future Enhancements
+
+Potential future improvements include:
+
+- Integration with meeting transcripts
+- Integration with Microsoft Outlook Calendar for enterprise environments
+- Slack or Microsoft Teams notifications
+- Jira or Asana task integration
+- Enterprise database storage
+- Error handling and retry mechanisms
+- Audit logging
+- Advanced workflow analytics
+- Automated stakeholder routing
+- Role-based access controls
+- Production-scale monitoring
+
+---
+
+## Business Analysis Perspective
+
+This project demonstrates the ability to move from **business problem identification to requirements definition, process redesign, solution implementation, and UAT validation**.
+
+The project follows a structured Business Analysis approach:
+
+**Business Problem → Requirements Definition → Process Analysis → Process Redesign → AI Solution Design → Workflow Automation → Data Structuring → UAT Validation → Human-in-the-Loop Controls**
+
+### Key Capabilities Demonstrated
+
+**Requirements → Process Mapping → AI Solution Design → Workflow Automation → Data Structuring → UAT → Human-in-the-Loop Controls**
+
+---
+
+## Repository Structure
+
 ```text
-[ Meeting Notes Input (Zapier Form) ]
-                  │
-                  ▼
-      [ Google Gemini AI Layer ]
-                  │
-                  ▼
-       [ Structured JSON Output ]
-                  │
-                  ▼
-      [ JavaScript Parser (Zapier) ]
-                  │
-                  ▼
-        [ Zapier Orchestrator ]
-      ┌───────────┼───────────┐
-      ▼           ▼           ▼
-   [ Google    [ MS      [ Gmail
-   Calendar ]  To Do ]   Draft ]
-                             │
-                             ▼
-                    [ Human Review Gate ]
-                             │
-                             ▼
-                   [ Send to Stakeholders ]
-
-Solution Architecture & Workflow Steps
-
-Step 1 — Submit Meeting Notes: The user submits unstructured meeting notes through a Zapier Form.
-Step 2 — AI Processing: Google Gemini analyzes the text and extracts structured information including title, date, time, duration, action items, priority, and draft email body.
-Step 3 — JSON Processing: A JavaScript step in Zapier parses the JSON response and validates data types for downstream tools.
-Step 4 — Automated Output Execution:
-Follow-up event generated in Google Calendar.
-Action item task added to Microsoft To Do.
-Professional follow-up email saved in Gmail Drafts.
-Step 5 — Human Review Gate: The generated Gmail draft remains safely in the Drafts folder until a human reviews, edits, and sends it.
-
-Implementation Details & System Prompt
-
-Gemini AI System Prompt
-JSON
-{ 
-  "role": "system", 
-  "content": "You are an AI productivity assistant. Parse the provided raw meeting notes or audio transcript and extract structured parameters. You MUST return ONLY valid JSON matching this exact schema:\n{\n  \"meeting_title\": \"Short, professional calendar event title\",\n  \"meeting_date\": \"YYYY-MM-DD format based on context\",\n  \"meeting_time\": \"HH:MM AM/PM format\",\n  \"duration_minutes\": 30,\n  \"action_item\": \"Primary actionable task extracted\",\n  \"priority\": \"High | Medium | Low\",\n  \"email_draft\": \"Concise, professional summary email to stakeholders outlining key decisions and next steps.\"\n}\n\nRules:\n1. Use professional business language.\n2. Calculate relative dates (e.g., 'next Tuesday') into a strict ISO date format (YYYY-MM-DD).\n3. If meeting duration is missing, default to 30.\n4. If meeting time is unclear, set meeting_time to 'TBD - Confirmation Required'.\n5. Return valid JSON only with no conversational prose." 
-} 
-Sample Input & Validated Output
-Sample Input Text:
-
-"Met with Sarah regarding the Q3 strategy review. Schedule a follow-up meeting next Tuesday at 11 AM for 45 minutes. Finalize financial metrics before Friday and send stakeholders a summary."
-
-Validated JSON Response:
-
-JSON
-{ 
-  "meeting_title": "Q3 Strategy Review Follow-Up", 
-  "meeting_date": "2026-08-11", 
-  "meeting_time": "11:00 AM", 
-  "duration_minutes": 45, 
-  "action_item": "Finalize Q3 financial metrics", 
-  "priority": "High", 
-  "email_draft": "Hello Sarah,\n\nThank you for today's meeting regarding the Q3 strategy review. As agreed, our follow-up meeting is scheduled for next Tuesday at 11:00 AM (45 mins).\n\nKey Action Item:\n- Finalize financial metrics prior to Friday.\n\nPlease let me know if any updates are needed.\n\nBest regards," 
-}
-
-Testing, UAT Matrix & Governance
-
-User Acceptance Testing (UAT)
-Test Case	Description	Expected Result	Actual Result	Status
-UAT-01	Meeting Notes Parsing	ISO JSON payload generated	Structured JSON successfully generated with required fields	✅ Pass
-UAT-02	Calendar Event Creation	Event queued with correct duration	Google Calendar event created with correct time & 45-min duration	✅ Pass
-UAT-03	Task Creation	Action item card created	Microsoft To Do task created with 'High' priority	✅ Pass
-UAT-04	Email Generation	Draft created in Gmail	Draft saved in Gmail Drafts folder	✅ Pass
-UAT-05	Human Approval Gate	Email unsent until manual action	Email held in Drafts; zero automated distribution	✅ Pass
-
-Risk Mitigation Matrix
-
-Identified Risk	Severity	Mitigation Strategy
-Ambiguous Notes	Medium	System prompts for clarification when dates/times are missing
-Hallucinated Email Body	Medium	Mandatory Human Review Gate before any email is dispatched
-Data Privacy Concerns	High	Non-sensitive test data used during prototyping; strict policy enforcement for production
-API / Integration Failure	Low	Zapier error logging and fallback alert system
-
-Prototype Limitations & Future Enhancements
-
-Limitations
-Microsoft To Do vs. Planner: Microsoft To Do was utilized because Microsoft Planner native connectors were restricted in the free testing environment.
-Performance depends directly on the clarity of submitted notes.
-
-Future Enhancements
-Integration with Microsoft Outlook Calendar for enterprise environments.
-Slack / Microsoft Teams channel notifications for automated post-meeting summary alerts.
-Jira / Asana direct sync for engineering and product teams.
-
-Repository Structure
-
-Plaintext
 ai-meeting-workflow-automation/
 │
 ├── documentation/
@@ -177,13 +333,18 @@ ai-meeting-workflow-automation/
 │   └── 04-gmail-draft-review.png
 │
 ├── as-is-to-be-process.png
+├── solution-architecture.png
 └── README.md
+```
 
-Author & Contact
-Mansi Singh
+---
+
+## Contact
+
+**Mansi Singh**
 
 Business & Operations Analyst
 
 Mumbai, India
 
-https://www.linkedin.com/in/mansisingh836/ 
+[LinkedIn](https://www.linkedin.com/in/mansisingh836/)

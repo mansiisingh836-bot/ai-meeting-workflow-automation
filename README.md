@@ -95,6 +95,7 @@ These activities are typically completed across multiple applications, requiring
                    [ Send to Stakeholders ]
 
 Solution Architecture & Workflow Steps
+
 Step 1 — Submit Meeting Notes: The user submits unstructured meeting notes through a Zapier Form.
 Step 2 — AI Processing: Google Gemini analyzes the text and extracts structured information including title, date, time, duration, action items, priority, and draft email body.
 Step 3 — JSON Processing: A JavaScript step in Zapier parses the JSON response and validates data types for downstream tools.
@@ -105,6 +106,7 @@ Professional follow-up email saved in Gmail Drafts.
 Step 5 — Human Review Gate: The generated Gmail draft remains safely in the Drafts folder until a human reviews, edits, and sends it.
 
 Implementation Details & System Prompt
+
 Gemini AI System Prompt
 JSON
 { 
@@ -128,7 +130,9 @@ JSON
   "priority": "High", 
   "email_draft": "Hello Sarah,\n\nThank you for today's meeting regarding the Q3 strategy review. As agreed, our follow-up meeting is scheduled for next Tuesday at 11:00 AM (45 mins).\n\nKey Action Item:\n- Finalize financial metrics prior to Friday.\n\nPlease let me know if any updates are needed.\n\nBest regards," 
 }
+
 Testing, UAT Matrix & Governance
+
 User Acceptance Testing (UAT)
 Test Case	Description	Expected Result	Actual Result	Status
 UAT-01	Meeting Notes Parsing	ISO JSON payload generated	Structured JSON successfully generated with required fields	✅ Pass
@@ -138,6 +142,7 @@ UAT-04	Email Generation	Draft created in Gmail	Draft saved in Gmail Drafts folde
 UAT-05	Human Approval Gate	Email unsent until manual action	Email held in Drafts; zero automated distribution	✅ Pass
 
 Risk Mitigation Matrix
+
 Identified Risk	Severity	Mitigation Strategy
 Ambiguous Notes	Medium	System prompts for clarification when dates/times are missing
 Hallucinated Email Body	Medium	Mandatory Human Review Gate before any email is dispatched
@@ -145,6 +150,7 @@ Data Privacy Concerns	High	Non-sensitive test data used during prototyping; stri
 API / Integration Failure	Low	Zapier error logging and fallback alert system
 
 Prototype Limitations & Future Enhancements
+
 Limitations
 Microsoft To Do vs. Planner: Microsoft To Do was utilized because Microsoft Planner native connectors were restricted in the free testing environment.
 Performance depends directly on the clarity of submitted notes.
@@ -155,6 +161,7 @@ Slack / Microsoft Teams channel notifications for automated post-meeting summary
 Jira / Asana direct sync for engineering and product teams.
 
 Repository Structure
+
 Plaintext
 ai-meeting-workflow-automation/
 │

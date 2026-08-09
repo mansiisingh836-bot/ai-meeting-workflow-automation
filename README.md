@@ -86,7 +86,8 @@ The implemented solution consists of the following components:
 
 ### Architecture Diagram
 
-![Solution Architecture](solution-architecture.png)
+![Solution Architecture](solution-architecture.png) 
+https://github.com/mansiisingh836-bot/ai-meeting-workflow-automation/blob/main/solution-architecture.png%20.png
 
 ---
 
